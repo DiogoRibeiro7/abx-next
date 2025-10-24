@@ -26,7 +26,7 @@ viz = ["matplotlib"]
 pytest = "^8.3.0"
 pytest-cov = "^7.0.0"
 mypy = "^1.11.0"
-ruff = "^0.6.0"
+ruff = "^0.14.2"
 pre-commit = "^4.3.0"
 
 [tool.ruff]
