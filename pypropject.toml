@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "abx-next"
+version = "0.1.0"
+description = "Modern A/B experimentation utilities: CUPED/CUPAC hooks, triggered analysis, SRM, switchback helpers, and power sims."
+authors = ["Diogo Ribeiro and contributors"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "abx_next", from = "src" }]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+numpy = "^2.0.0"
+pandas = "^2.2.0"
+scipy = "^1.13.0"
+typing-extensions = "^4.12.0"
+
+# Optional extras
+scikit-learn = { version = "^1.5.0", optional = true }
+matplotlib = { version = "^3.9.0", optional = true }
+
+[tool.poetry.extras]
+ml = ["scikit-learn"]
+viz = ["matplotlib"]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.0"
+pytest-cov = "^5.0.0"
+mypy = "^1.11.0"
+ruff = "^0.6.0"
+pre-commit = "^3.8.0"
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "UP", "B"]
+fix = true
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.pytest.ini_options]
+addopts = "-q --cov=abx_next --cov-report=term-missing"
+testpaths = ["tests"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
