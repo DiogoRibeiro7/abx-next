@@ -2,8 +2,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Literal, Protocol, runtime_checkable
-import numpy as np
+
 import pandas as pd
+from pandas.api.types import is_bool_dtype, is_numeric_dtype
 
 Group = Literal["control", "treatment"]
 
@@ -27,10 +28,10 @@ class ABFrame:
         if missing:
             raise ValueError(f"ABFrame missing columns: {sorted(missing)}")
         if not set(self.df["group"].unique()).issubset({"control", "treatment"}):
-            raise ValueError("Column 'group' must contain only {'control','treatment'}." )
-        if not np.issubdtype(self.df["metric"].dtype, np.number):
+            raise ValueError("Column 'group' must contain only {'control','treatment'}.")
+        if not is_numeric_dtype(self.df["metric"]):
             raise TypeError("Column 'metric' must be numeric.")
-        if self.df["exposed"].dtype != bool:
+        if not is_bool_dtype(self.df["exposed"]):
             # strict typing to avoid silent truthiness bugs
             raise TypeError("Column 'exposed' must be boolean.")
 

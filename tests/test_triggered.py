@@ -1,6 +1,8 @@
 import pandas as pd
+
 from abx_next import ABFrame
-from abx_next.analysis.triggered import filter_exposed, diff_in_means
+from abx_next.analysis.triggered import diff_in_means, filter_exposed
+
 
 def test_filter_exposed_and_diff():
     df = pd.DataFrame({
@@ -9,7 +11,8 @@ def test_filter_exposed_and_diff():
         "metric": [1.0, 1.2, 1.1, 1.5],
         "exposed": [True, False, True, True],
     })
-    ab = ABFrame(df); ab.validate()
+    ab = ABFrame(df)
+    ab.validate()
     fx = filter_exposed(ab)
     assert fx.shape[0] == 3
     stats = diff_in_means(fx)

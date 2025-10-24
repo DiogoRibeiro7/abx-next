@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from typing import Tuple
 import numpy as np
 import pandas as pd
+from pandas.api.types import is_numeric_dtype
+
 from ..utils.types import ABFrame, CovariateProvider
 
 
@@ -10,7 +11,7 @@ def _theta_hat(y: pd.Series, x: pd.Series) -> float:
     """Estimate theta = Cov(Y, X) / Var(X) for CUPED."""
     if len(y) != len(x):
         raise ValueError("y and x must have the same length.")
-    if not (np.issubdtype(y.dtype, np.number) and np.issubdtype(x.dtype, np.number)):
+    if not (is_numeric_dtype(y) and is_numeric_dtype(x)):
         raise TypeError("y and x must be numeric.")
     vx = float(np.var(x, ddof=1))
     if vx <= 0.0:
@@ -23,7 +24,7 @@ def cuped_adjust(
     ab: ABFrame,
     covariate: pd.Series | None = None,
     cov_provider: CovariateProvider | None = None,
-) -> Tuple[pd.DataFrame, float]:
+) -> tuple[pd.DataFrame, float]:
     """Apply CUPED: Y* = Y - theta * X."""
     ab.validate()
     df = ab.df.copy()

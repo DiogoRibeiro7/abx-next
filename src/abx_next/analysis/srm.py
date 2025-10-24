@@ -16,7 +16,12 @@ def srm_test(n_control: int, n_treatment: int, p_expected: float = 0.5) -> dict[
     e_t = n_tot * (1.0 - p_expected)
 
     chi2, p = chisquare([n_control, n_treatment], f_exp=[e_c, e_t])
-    return {"chi2": float(chi2), "pvalue": float(p), "expected_control": float(e_c), "expected_treatment": float(e_t)}
+    return {
+        "chi2": float(chi2),
+        "pvalue": float(p),
+        "expected_control": float(e_c),
+        "expected_treatment": float(e_t),
+    }
 
 
 def srm_from_frame(df: pd.DataFrame, p_expected: float = 0.5) -> dict[str, float]:

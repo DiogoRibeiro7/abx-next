@@ -1,5 +1,6 @@
 import pandas as pd
-from abx_next import ABFrame, cuped_adjust, filter_exposed, diff_in_means, srm_from_frame
+
+from abx_next import ABFrame, cuped_adjust, diff_in_means, filter_exposed, srm_from_frame
 
 # Fake data
 df = pd.DataFrame({
@@ -10,7 +11,8 @@ df = pd.DataFrame({
     "baseline": pd.Series(range(1000)).astype(float) * 0.005 + 0.2,
 })
 
-ab = ABFrame(df); ab.validate()
+ab = ABFrame(df)
+ab.validate()
 
 # Guardrail: SRM
 print(srm_from_frame(df))
