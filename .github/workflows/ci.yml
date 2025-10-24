@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
-      - uses: abatilo/actions-poetry@v3
+      - uses: abatilo/actions-poetry@v4
       - run: poetry install
       - run: poetry run ruff check --output-format=github .
       - run: poetry run mypy src
