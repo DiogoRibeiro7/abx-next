@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-from pandas.api.types import is_numeric_dtype
 
+from ..core.validate import assert_numeric
 from ..utils.types import ABFrame, CovariateProvider
 
 
@@ -11,8 +11,8 @@ def _theta_hat(y: pd.Series, x: pd.Series) -> float:
     """Estimate theta = Cov(Y, X) / Var(X) for CUPED."""
     if len(y) != len(x):
         raise ValueError("y and x must have the same length.")
-    if not (is_numeric_dtype(y) and is_numeric_dtype(x)):
-        raise TypeError("y and x must be numeric.")
+    assert_numeric(y, "y")
+    assert_numeric(x, "x")
     vx = float(np.var(x, ddof=1))
     if vx <= 0.0:
         raise ValueError("Variance of covariate X must be positive.")

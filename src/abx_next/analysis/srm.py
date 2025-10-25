@@ -3,13 +3,14 @@ from __future__ import annotations
 import pandas as pd
 from scipy.stats import chisquare
 
+from ..core.validate import ensure_positive_int, ensure_probability
+
 
 def srm_test(n_control: int, n_treatment: int, p_expected: float = 0.5) -> dict[str, float]:
     """Chi-square SRM test for a 1:1 (or custom) split."""
-    if n_control <= 0 or n_treatment <= 0:
-        raise ValueError("Counts must be positive.")
-    if not (0.0 < p_expected < 1.0):
-        raise ValueError("p_expected must be in (0,1).")
+    ensure_positive_int(n_control, "n_control")
+    ensure_positive_int(n_treatment, "n_treatment")
+    ensure_probability(p_expected, "p_expected")
 
     n_tot = n_control + n_treatment
     e_c = n_tot * p_expected

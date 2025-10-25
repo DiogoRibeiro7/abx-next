@@ -2,8 +2,8 @@ site_name: abx-next
 repo_url: https://github.com/DiogoRibeiro7/abx-next
 theme: { name: material }
 nav:
-  - Home: docs/index.md
+  - Home: index.md
   - Concepts:
-    - Variance reduction: docs/concepts/variance_reduction.md
-    - Sequential: docs/concepts/sequential.md
-    - Switchback: docs/concepts/switchback.md
+    - Variance reduction: concepts/variance_reduction.md
+    - Sequential: concepts/sequential.md
+    - Switchback: concepts/switchback.md

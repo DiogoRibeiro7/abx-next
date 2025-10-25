@@ -4,7 +4,8 @@ from dataclasses import dataclass
 from typing import Literal, Protocol, runtime_checkable
 
 import pandas as pd
-from pandas.api.types import is_bool_dtype, is_numeric_dtype
+
+from ..core.validate import assert_bool, assert_in_set, assert_numeric, require_columns
 
 Group = Literal["control", "treatment"]
 
@@ -23,17 +24,11 @@ class ABFrame:
     df: pd.DataFrame
 
     def validate(self) -> None:
-        required = {"group", "metric", "user_id", "exposed"}
-        missing = required.difference(self.df.columns)
-        if missing:
-            raise ValueError(f"ABFrame missing columns: {sorted(missing)}")
-        if not set(self.df["group"].unique()).issubset({"control", "treatment"}):
-            raise ValueError("Column 'group' must contain only {'control','treatment'}.")
-        if not is_numeric_dtype(self.df["metric"]):
-            raise TypeError("Column 'metric' must be numeric.")
-        if not is_bool_dtype(self.df["exposed"]):
-            # strict typing to avoid silent truthiness bugs
-            raise TypeError("Column 'exposed' must be boolean.")
+        require_columns(self.df, ["group", "metric", "user_id", "exposed"], context="ABFrame")
+        assert_in_set(self.df["group"], ["control", "treatment"], "group")
+        assert_numeric(self.df["metric"], "metric")
+        # strict typing to avoid silent truthiness bugs
+        assert_bool(self.df["exposed"], "exposed")
 
 
 @runtime_checkable
