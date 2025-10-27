@@ -6,6 +6,8 @@ from .analysis.srm import srm_from_frame, srm_test
 from .analysis.srm_diag import srm_diagnostics
 from .analysis.triggered import diff_in_means, filter_exposed
 from .design.switchback import assign_switchback, label_events_by_period, validate_period
+from .geo.scm import fit_scm, scm_summary
+from .hte import estimate_uplift
 from .providers.sklearn_cupac import SklearnCovariateProvider
 from .utils.types import ABFrame, CovariateProvider
 
@@ -19,6 +21,9 @@ __all__ = [
     "label_events_by_period",
     "filter_exposed",
     "diff_in_means",
+    "fit_scm",
+    "scm_summary",
+    "estimate_uplift",
     "ratio_of_means_ci",
     "srm_diagnostics",
     "welch_diff_ci",

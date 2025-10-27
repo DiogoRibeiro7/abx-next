@@ -20,6 +20,7 @@ __all__ = [
     "ensure_non_negative",
     "ensure_positive_int",
     "ensure_probability",
+    "validate_ab_schema",
 ]
 
 
@@ -91,3 +92,21 @@ def ensure_probability(value: float, name: str, *, inclusive: bool = False) -> N
         bounds = "(0, 1)"
     if not valid:
         raise ValidationError(f"{name} must lie in {bounds}.")
+
+
+DEFAULT_AB_REQUIRED = {"group", "user_id", "metric", "exposed"}
+
+
+def validate_ab_schema(df: pd.DataFrame, required: Iterable[str] | None = None) -> None:
+    """Validate that a DataFrame matches the default A/B schema."""
+    required_set = set(required) if required is not None else DEFAULT_AB_REQUIRED
+    require_columns(df, required_set, context="A/B dataset")
+
+    if "group" in required_set:
+        assert_in_set(df["group"], ("control", "treatment"), "group")
+    if "metric" in required_set:
+        assert_numeric(df["metric"], "metric")
+    if "exposed" in required_set:
+        assert_bool(df["exposed"], "exposed")
+    if "user_id" in required_set and df["user_id"].isna().any():
+        raise ValidationError("Column 'user_id' must not contain null values.")

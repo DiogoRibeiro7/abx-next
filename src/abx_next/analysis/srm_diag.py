@@ -187,3 +187,86 @@ def srm_diagnostics(
         log.debug("SRM diagnostics found no suspect categories despite SRM p-value %.4g.", srm_p)
 
     return {"srm_p": float(srm_p), "suspects": suspects}
+
+
+def srm_by_strata(
+    df: pd.DataFrame,
+    group_col: str = "group",
+    features: Iterable[str] | None = None,
+) -> pd.DataFrame:
+    """Run SRM tests within key strata (e.g., country, device)."""
+    if features is None:
+        features_list = ["country", "device"]
+    else:
+        features_list = list(features)
+    _validate_inputs(df, group_col, features_list)
+
+    renamed = df.rename(columns={group_col: "group"})
+    global_counts = renamed["group"].value_counts()
+    if not {"control", "treatment"}.issubset(global_counts.index):
+        raise ValueError("DataFrame must contain both 'control' and 'treatment' groups.")
+
+    total_control = float(global_counts["control"])
+    total_treatment = float(global_counts["treatment"])
+
+    records: list[dict[str, object]] = []
+
+    for feature in features_list:
+        if feature not in renamed.columns:
+            log.debug("Skipping missing feature '%s'", feature)
+            continue
+        feature_series = _prepare_feature_series(renamed[feature])
+        contingency = pd.crosstab(renamed["group"], feature_series, dropna=False)
+        contingency = contingency.reindex(index=["control", "treatment"]).fillna(0)
+
+        for category in contingency.columns:
+            if category == _OTHER_TOKEN:
+                continue
+            counts = contingency[category].to_numpy(dtype=float)
+            count_control, count_treatment = counts
+            total = count_control + count_treatment
+            if total == 0:
+                continue
+
+            rest_control = total_control - count_control
+            rest_treatment = total_treatment - count_treatment
+            if rest_control < 0 or rest_treatment < 0:
+                continue
+            table = np.array(
+                [[count_control, rest_control], [count_treatment, rest_treatment]],
+                dtype=float,
+            )
+            try:
+                chi2, pvalue, _, expected = chi2_contingency(table, correction=False)
+            except ValueError:
+                continue
+
+            records.append(
+                {
+                    "feature": feature,
+                    "category": None if category == _NA_TOKEN else category,
+                    "chi2": float(chi2),
+                    "pvalue": float(pvalue),
+                    "obs_control": float(count_control),
+                    "obs_treatment": float(count_treatment),
+                    "exp_control": float(expected[0, 0]),
+                    "exp_treatment": float(expected[1, 0]),
+                }
+            )
+
+    if not records:
+        return pd.DataFrame(columns=[
+            "feature",
+            "category",
+            "chi2",
+            "pvalue",
+            "obs_control",
+            "obs_treatment",
+            "exp_control",
+            "exp_treatment",
+        ])
+
+    result = pd.DataFrame(records)
+    result.sort_values("pvalue", inplace=True)
+    result.reset_index(drop=True, inplace=True)
+    return result
