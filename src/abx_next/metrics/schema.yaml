@@ -1,0 +1,117 @@
+# Sample metric definitions for A/B testing experiments
+# This file demonstrates the YAML schema for defining metrics that teams can use
+
+metrics:
+  # Conversion rate metric
+  conversion_rate:
+    kind: "binary"
+    aggregation: "mean"
+    description: "Proportion of users who completed the target action"
+    required_columns:
+      - "user_id"
+      - "converted"
+      - "treatment"
+    column_types:
+      user_id: "string"
+      converted: "boolean"
+      treatment: "string"
+
+  # Revenue per user metric
+  revenue_per_user:
+    kind: "continuous"
+    aggregation: "mean"
+    description: "Average revenue generated per user"
+    required_columns:
+      - "user_id"
+      - "revenue"
+      - "treatment"
+    column_types:
+      user_id: "string"
+      revenue: "numeric"
+      treatment: "string"
+
+  # Click-through rate metric
+  ctr:
+    kind: "ratio"
+    aggregation: "ratio_of_means"
+    description: "Click-through rate (clicks / impressions)"
+    required_columns:
+      - "user_id"
+      - "clicks"
+      - "impressions"
+      - "treatment"
+    column_types:
+      user_id: "string"
+      clicks: "numeric"
+      impressions: "numeric"
+      treatment: "string"
+
+  # Time to conversion metric
+  time_to_conversion:
+    kind: "duration"
+    aggregation: "median"
+    description: "Median time from exposure to conversion"
+    required_columns:
+      - "user_id"
+      - "exposure_time"
+      - "conversion_time"
+      - "treatment"
+    column_types:
+      user_id: "string"
+      exposure_time: "datetime"
+      conversion_time: "datetime"
+      treatment: "string"
+
+  # Session length metric
+  session_length:
+    kind: "continuous"
+    aggregation: "mean"
+    description: "Average session duration in minutes"
+    required_columns:
+      - "session_id"
+      - "session_duration_minutes"
+      - "treatment"
+    column_types:
+      session_id: "string"
+      session_duration_minutes: "numeric"
+      treatment: "string"
+
+  # Purchase frequency metric (for existing customers)
+  purchase_frequency:
+    kind: "count"
+    aggregation: "mean"
+    description: "Average number of purchases per customer in period"
+    required_columns:
+      - "customer_id"
+      - "purchase_count"
+      - "treatment"
+      - "period_start"
+      - "period_end"
+    column_types:
+      customer_id: "string"
+      purchase_count: "numeric"
+      treatment: "string"
+      period_start: "datetime"
+      period_end: "datetime"
+
+  # Retention rate metric
+  retention_rate:
+    kind: "binary"
+    aggregation: "mean"
+    description: "Proportion of users who return within specified period"
+    required_columns:
+      - "user_id"
+      - "retained"
+      - "treatment"
+      - "cohort_date"
+    column_types:
+      user_id: "string"
+      retained: "boolean"
+      treatment: "string"
+      cohort_date: "datetime"
+
+# Configuration for validation
+validation:
+  strict_types: true
+  allow_extra_columns: true
+  require_treatment_column: true

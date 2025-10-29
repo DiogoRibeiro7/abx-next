@@ -13,6 +13,7 @@ from .robust import percentile_ci, winsorized_mean_ci
 from .sequential import bernoulli_ci_anytime, diff_ci_anytime_binomial
 from .srm import srm_from_frame, srm_test
 from .srm_diag import srm_diagnostics
+from .srm_stream import SrmWatch
 from .triggered import diff_in_means, filter_exposed
 
 __all__ = [
@@ -37,6 +38,7 @@ __all__ = [
     "srm_diagnostics",
     "srm_from_frame",
     "srm_test",
+    "SrmWatch",
     "welch_diff_ci",
     "winsorized_mean_ci",
 ]
