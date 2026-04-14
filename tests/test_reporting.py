@@ -8,7 +8,7 @@ import sys
 
 sys.path.append('src')
 
-from abx_next.reporting.summary import render_ab_report
+from experimetrics.reporting.summary import render_ab_report
 
 
 def test_render_ab_report_markdown():

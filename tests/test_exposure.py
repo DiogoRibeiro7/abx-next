@@ -6,8 +6,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from abx_next.analysis import define_exposure, triggered_sensitivity
-from abx_next.core.errors import ValidationError
+from experimetrics.analysis import define_exposure, triggered_sensitivity
+from experimetrics.core.errors import ValidationError
 
 
 def _build_events() -> pd.DataFrame:

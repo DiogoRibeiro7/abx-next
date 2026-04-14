@@ -6,8 +6,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from abx_next.analysis import adjust_pvalues, familywise_report
-from abx_next.core.errors import ValidationError
+from experimetrics.analysis import adjust_pvalues, familywise_report
+from experimetrics.core.errors import ValidationError
 
 
 def test_adjust_pvalues_bonferroni_and_holm() -> None:

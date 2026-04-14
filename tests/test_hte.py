@@ -12,8 +12,8 @@ try:
 except ModuleNotFoundError:  # pragma: no cover - optional dependency
     pytest.skip("scikit-learn required for uplift tests", allow_module_level=True)
 
-from abx_next.core.errors import ValidationError
-from abx_next.hte import estimate_uplift
+from experimetrics.core.errors import ValidationError
+from experimetrics.hte import estimate_uplift
 
 
 def _make_synthetic(n: int = 2000, seed: int = 123) -> pd.DataFrame:

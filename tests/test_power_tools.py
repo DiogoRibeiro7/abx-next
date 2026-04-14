@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from abx_next.sim import (
+from experimetrics.sim import (
     power_mean_mc,
     power_mean_welch,
     power_prop_mc,

@@ -1,15 +1,15 @@
 [tool.poetry]
-name = "abx-next"
+name = "experimetrics"
 version = "0.1.0"
 description = "Modern A/B experimentation utilities: CUPED/CUPAC hooks, triggered analysis, SRM, switchback helpers, and power sims."
 authors = ["Diogo Ribeiro and contributors"]
 license = "MIT"
 readme = "README.md"
 packages = [
-    { include = "abx_next", from = "src" },
+    { include = "experimetrics", from = "src" },
     { include = "examples" },
 ]
-include = ["src/abx_next/py.typed"]
+include = ["src/experimetrics/py.typed"]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.13"
@@ -53,7 +53,7 @@ disallow_untyped_defs = true
 disallow_incomplete_defs = true
 
 [tool.pytest.ini_options]
-addopts = "-q --cov=abx_next --cov-report=term-missing"
+addopts = "-q --cov=experimetrics --cov-report=term-missing"
 testpaths = ["tests"]
 
 [build-system]

@@ -7,8 +7,8 @@ import pandas as pd
 import pytest
 from sklearn.linear_model import LinearRegression
 
-from abx_next import ABFrame, cuped_adjust
-from abx_next.providers import SklearnCovariateProvider
+from experimetrics import ABFrame, cuped_adjust
+from experimetrics.providers import SklearnCovariateProvider
 
 
 def test_sklearn_covariate_provider_reduces_variance() -> None:

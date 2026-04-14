@@ -1,4 +1,4 @@
-"""Visualization utilities for abx-next."""
+"""Visualization utilities for experimetrics."""
 
 from __future__ import annotations
 

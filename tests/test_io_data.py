@@ -8,8 +8,8 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
-from abx_next.core.errors import ValidationError
-from abx_next.io.data import load_ab_csv, save_results_json
+from experimetrics.core.errors import ValidationError
+from experimetrics.io.data import load_ab_csv, save_results_json
 
 
 def test_load_ab_csv_round_trip(tmp_path: Path) -> None:

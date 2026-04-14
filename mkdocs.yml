@@ -1,5 +1,5 @@
-site_name: abx-next
-repo_url: https://github.com/DiogoRibeiro7/abx-next
+site_name: experimetrics
+repo_url: https://github.com/DiogoRibeiro7/experimetrics
 theme: { name: material }
 nav:
   - Home: index.md

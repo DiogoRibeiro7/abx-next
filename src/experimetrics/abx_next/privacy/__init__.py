@@ -1,4 +1,4 @@
-"""Privacy utilities for abx-next."""
+"""Privacy utilities for experimetrics."""
 
 from .kanon import assert_k_anonymity
 

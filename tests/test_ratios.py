@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from abx_next.analysis import ratio_of_means_ci
+from experimetrics.analysis import ratio_of_means_ci
 
 
 def test_ratio_of_means_ci_basic_case() -> None:

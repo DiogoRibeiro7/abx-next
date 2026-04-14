@@ -5,12 +5,12 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from abx_next.analysis.bayes_bernoulli import (
+from experimetrics.analysis.bayes_bernoulli import (
     lift_posterior_samples,
     posterior,
     prob_t_greater_c,
 )
-from abx_next.core.errors import ValidationError
+from experimetrics.core.errors import ValidationError
 
 
 def test_posterior_updates_counts() -> None:

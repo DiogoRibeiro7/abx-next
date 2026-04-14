@@ -3,8 +3,8 @@ from __future__ import annotations
 import pytest
 
 # Tests for switchback power utilities.
-from abx_next.core.errors import ValidationError
-from abx_next.sim.power_switchback import estimate_power_switchback, required_blocks_for_power
+from experimetrics.core.errors import ValidationError
+from experimetrics.sim.power_switchback import estimate_power_switchback, required_blocks_for_power
 
 
 def test_power_increases_with_blocks() -> None:

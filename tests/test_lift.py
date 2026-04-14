@@ -5,8 +5,8 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from abx_next.analysis import log_lift_ci, percent_change_ci
-from abx_next.core.errors import ValidationError
+from experimetrics.analysis import log_lift_ci, percent_change_ci
+from experimetrics.core.errors import ValidationError
 
 
 def _simulate_normals(

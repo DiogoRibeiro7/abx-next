@@ -1,14 +1,14 @@
 # Switchback designs
 
 Switchbacks randomize by time blocks instead of by user to mitigate network
-effects. The helpers in `abx_next.design.switchback` validate periods and label
+effects. The helpers in `experimetrics.design.switchback` validate periods and label
 event logs so downstream queries stay tidy.
 
 ```python
 import pandas as pd
 
-from abx_next import assign_switchback
-from abx_next.design.switchback import label_events_by_period, validate_period
+from experimetrics import assign_switchback
+from experimetrics.design.switchback import label_events_by_period, validate_period
 
 validate_period("1h")
 

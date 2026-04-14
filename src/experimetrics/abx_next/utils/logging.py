@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 import os
 
-LOGGER_NAME = "abx_next"
+LOGGER_NAME = "experimetrics"
 _ENV_VAR = "LOG_LEVEL"
 
 
@@ -26,7 +26,7 @@ _BASE_LOGGER.addHandler(logging.NullHandler())
 
 def get_logger(name: str | None = None) -> logging.Logger:
     """
-    Return a child logger of the package-level ``abx_next`` logger.
+    Return a child logger of the package-level ``experimetrics`` logger.
 
     Parameters
     ----------

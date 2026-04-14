@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from abx_next.analysis.drift import drift_report, ks_drift, psi_drift
+from experimetrics.analysis.drift import drift_report, ks_drift, psi_drift
 
 
 def test_ks_drift_no_drift():

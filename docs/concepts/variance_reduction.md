@@ -1,7 +1,7 @@
 # Variance reduction
 
 Variance reduction techniques squeeze more signal out of noisy experiments without
-changing user-facing experiences. `abx_next` ships CUPED/CUPAC helpers and direct
+changing user-facing experiences. `experimetrics` ships CUPED/CUPAC helpers and direct
 ratio methods so you can plug them into existing reporting pipelines.
 
 ## CUPED in a few lines
@@ -9,7 +9,7 @@ ratio methods so you can plug them into existing reporting pipelines.
 ```python
 import pandas as pd
 
-from abx_next import ABFrame, cuped_adjust
+from experimetrics import ABFrame, cuped_adjust
 
 raw = pd.DataFrame(
     {
@@ -35,8 +35,8 @@ print(adjusted[["user_id", "metric", "metric_cuped"]])
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 
-from abx_next import ABFrame, cuped_adjust
-from abx_next.providers import SklearnCovariateProvider
+from experimetrics import ABFrame, cuped_adjust
+from experimetrics.providers import SklearnCovariateProvider
 
 events = pd.DataFrame(
     {
@@ -73,7 +73,7 @@ print(adjusted.head())
 ## Ratio metrics without bespoke spreadsheets
 
 ```python
-from abx_next.analysis import ratio_of_means_ci
+from experimetrics.analysis import ratio_of_means_ci
 
 data = {
     "num_control": [220.0, 210.0, 215.0],

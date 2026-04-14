@@ -1,7 +1,7 @@
 import pandas as pd
 
-from abx_next import ABFrame
-from abx_next.analysis.cuped import cuped_adjust
+from experimetrics import ABFrame
+from experimetrics.analysis.cuped import cuped_adjust
 
 
 def test_cuped_adds_column_and_theta_float():

@@ -8,8 +8,8 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
-from abx_next.core.errors import ValidationError
-from abx_next.metrics.registry import (
+from experimetrics.core.errors import ValidationError
+from experimetrics.metrics.registry import (
     _clear_registry,
     get_metric,
     list_metrics,

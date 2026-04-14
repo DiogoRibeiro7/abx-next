@@ -7,7 +7,7 @@ even when teams peek at the dashboard every hour.
 ```python
 import numpy as np
 
-from abx_next.analysis import bernoulli_ci_anytime, diff_ci_anytime_binomial
+from experimetrics.analysis import bernoulli_ci_anytime, diff_ci_anytime_binomial
 
 rng = np.random.default_rng(2024)
 daily_conversions = rng.binomial(1, 0.28, size=500)

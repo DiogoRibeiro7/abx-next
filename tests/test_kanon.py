@@ -5,8 +5,8 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from abx_next.core.errors import ValidationError
-from abx_next.privacy.kanon import assert_k_anonymity
+from experimetrics.core.errors import ValidationError
+from experimetrics.privacy.kanon import assert_k_anonymity
 
 
 def test_k_anonymity_passes():

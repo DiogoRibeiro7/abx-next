@@ -1,6 +1,6 @@
 import pandas as pd
 
-from abx_next import ABFrame, cuped_adjust, diff_in_means, filter_exposed, srm_from_frame
+from experimetrics import ABFrame, cuped_adjust, diff_in_means, filter_exposed, srm_from_frame
 
 # Fake data
 df = pd.DataFrame({

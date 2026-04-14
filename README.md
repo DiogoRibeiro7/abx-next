@@ -1,4 +1,4 @@
-# abx-next
+# experimetrics
 
 Modern A/B experimentation utilities: CUPED/CUPAC hooks, triggered analysis, SRM, switchback helpers, and power simulations.
 
@@ -7,7 +7,7 @@ Shorter tests, safer reads, and reproducible designs. Focused on variance reduct
 
 ## Install
 ```bash
-poetry add abx-next
+poetry add experimetrics
 # or in a dev clone
 poetry install
 ```
@@ -15,7 +15,7 @@ poetry install
 ## Quickstart
 ```python
 import pandas as pd
-from abx_next import ABFrame, cuped_adjust, filter_exposed, diff_in_means, srm_from_frame
+from experimetrics import ABFrame, cuped_adjust, filter_exposed, diff_in_means, srm_from_frame
 
 df = pd.DataFrame({...})  # group, metric, user_id, exposed, baseline
 ab = ABFrame(df); ab.validate()

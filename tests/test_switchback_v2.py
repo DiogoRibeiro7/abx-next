@@ -5,7 +5,7 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from abx_next.design.switchback import (
+from experimetrics.design.switchback import (
     assign_switchback,
     label_events_by_period,
     validate_period,

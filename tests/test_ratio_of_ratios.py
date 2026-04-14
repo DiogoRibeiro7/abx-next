@@ -5,8 +5,8 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from abx_next.analysis.ratio_of_ratios import ror_ci
-from abx_next.core.errors import ValidationError
+from experimetrics.analysis.ratio_of_ratios import ror_ci
+from experimetrics.core.errors import ValidationError
 
 
 def _sample_group(seed: int, size: int, ctr: float, impressions_mean: float) -> tuple[np.ndarray, np.ndarray]:

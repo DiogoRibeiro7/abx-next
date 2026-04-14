@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from abx_next.analysis import srm_diagnostics
+from experimetrics.analysis import srm_diagnostics
 
 
 def test_srm_diagnostics_detects_device_imbalance() -> None:

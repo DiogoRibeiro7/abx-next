@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from abx_next.analysis.srm_stream import SrmWatch
+from experimetrics.analysis.srm_stream import SrmWatch
 
 
 def test_srm_watch_initialization():

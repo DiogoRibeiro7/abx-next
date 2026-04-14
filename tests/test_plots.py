@@ -33,7 +33,7 @@ def sample_timeseries():
 def test_forest_plot_import_error():
     """Test that ImportError is raised when matplotlib is not available."""
     # Test by directly calling the function without matplotlib
-    from abx_next.viz.plots import forest_plot
+    from experimetrics.viz.plots import forest_plot
 
     # This will trigger the ImportError when matplotlib.pyplot is imported
     sample_data = pd.DataFrame({
@@ -53,7 +53,7 @@ def test_forest_plot_import_error():
 
 def test_time_effect_plot_import_error():
     """Test that ImportError is raised when matplotlib is not available."""
-    from abx_next.viz.plots import time_effect_plot
+    from experimetrics.viz.plots import time_effect_plot
 
     sample_data = pd.DataFrame({
         "date": ["2023-01-01"], "effect": [0.1], "low": [0.0], "high": [0.2]
@@ -76,7 +76,7 @@ def test_time_effect_plot_import_error():
 def test_forest_plot_creates_objects(sample_estimates):
     """Test that forest_plot creates matplotlib objects."""
     try:
-        from abx_next.viz.plots import forest_plot
+        from experimetrics.viz.plots import forest_plot
         import matplotlib.figure
         import matplotlib.axes
     except ImportError:
@@ -101,7 +101,7 @@ def test_forest_plot_creates_objects(sample_estimates):
 def test_time_effect_plot_creates_objects(sample_timeseries):
     """Test that time_effect_plot creates matplotlib objects."""
     try:
-        from abx_next.viz.plots import time_effect_plot
+        from experimetrics.viz.plots import time_effect_plot
         import matplotlib.figure
         import matplotlib.axes
     except ImportError:
@@ -122,31 +122,31 @@ def test_time_effect_plot_creates_objects(sample_timeseries):
 def test_viz_module_import_without_matplotlib():
     """Test that viz module imports gracefully without matplotlib."""
     # This test just verifies the module structure
-    import abx_next.viz
+    import experimetrics.viz
 
     # The module should import without error regardless of matplotlib availability
-    assert hasattr(abx_next.viz, "__all__")
+    assert hasattr(experimetrics.viz, "__all__")
 
     # The functions should be in __all__ if matplotlib is available
     try:
         import matplotlib  # noqa: F401
-        assert "forest_plot" in abx_next.viz.__all__
-        assert "time_effect_plot" in abx_next.viz.__all__
+        assert "forest_plot" in experimetrics.viz.__all__
+        assert "time_effect_plot" in experimetrics.viz.__all__
     except ImportError:
         # If matplotlib is not available, functions should not be in __all__
-        assert "forest_plot" not in abx_next.viz.__all__
-        assert "time_effect_plot" not in abx_next.viz.__all__
+        assert "forest_plot" not in experimetrics.viz.__all__
+        assert "time_effect_plot" not in experimetrics.viz.__all__
 
 
 def test_viz_module_import_with_matplotlib():
     """Test that viz module imports functions when matplotlib is available."""
     try:
         import matplotlib  # noqa: F401
-        import abx_next.viz
+        import experimetrics.viz
 
         # Functions should be available when matplotlib is present
-        assert "forest_plot" in abx_next.viz.__all__
-        assert "time_effect_plot" in abx_next.viz.__all__
+        assert "forest_plot" in experimetrics.viz.__all__
+        assert "time_effect_plot" in experimetrics.viz.__all__
     except ImportError:
         pytest.skip("matplotlib not available")
 
@@ -156,7 +156,7 @@ def test_forest_plot_data_handling():
     try:
         import matplotlib
         matplotlib.use('Agg')  # Use non-interactive backend
-        from abx_next.viz.plots import forest_plot
+        from experimetrics.viz.plots import forest_plot
     except ImportError:
         pytest.skip("matplotlib not available")
 
@@ -190,7 +190,7 @@ def test_time_effect_plot_data_handling():
     try:
         import matplotlib
         matplotlib.use('Agg')  # Use non-interactive backend
-        from abx_next.viz.plots import time_effect_plot
+        from experimetrics.viz.plots import time_effect_plot
     except ImportError:
         pytest.skip("matplotlib not available")
 

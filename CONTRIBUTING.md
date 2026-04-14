@@ -1,4 +1,4 @@
-# Contributing to abx-next
+# Contributing to experimetrics
 
 ## Dev setup
 ```bash

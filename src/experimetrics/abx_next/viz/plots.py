@@ -1,4 +1,4 @@
-"""Plotting utilities for abx-next analysis results."""
+"""Plotting utilities for experimetrics analysis results."""
 
 from __future__ import annotations
 
@@ -33,7 +33,7 @@ def forest_plot(
         import matplotlib.pyplot as plt
     except ImportError as e:
         raise ImportError(
-            "matplotlib is required for plotting. Install with: pip install abx-next[viz]"
+            "matplotlib is required for plotting. Install with: pip install experimetrics[viz]"
         ) from e
 
     fig, ax = plt.subplots(figsize=(8, len(estimates) * 0.5 + 1))
@@ -98,7 +98,7 @@ def time_effect_plot(
         import pandas as pd
     except ImportError as e:
         raise ImportError(
-            "matplotlib is required for plotting. Install with: pip install abx-next[viz]"
+            "matplotlib is required for plotting. Install with: pip install experimetrics[viz]"
         ) from e
 
     # Ensure timestamp column is datetime

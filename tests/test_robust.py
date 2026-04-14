@@ -6,8 +6,8 @@ import numpy as np
 import pytest
 from scipy.stats import lognorm, norm
 
-from abx_next.analysis.robust import percentile_ci, winsorized_mean_ci
-from abx_next.core.errors import ValidationError
+from experimetrics.analysis.robust import percentile_ci, winsorized_mean_ci
+from experimetrics.core.errors import ValidationError
 
 
 def _lognormal_winsorized_mean(mu: float, sigma: float, trim: float) -> float:

@@ -1,4 +1,4 @@
-from abx_next import srm_test
+from experimetrics import srm_test
 
 
 def test_srm_balanced():

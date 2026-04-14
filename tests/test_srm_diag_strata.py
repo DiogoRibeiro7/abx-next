@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from abx_next.analysis.srm_diag import srm_by_strata
+from experimetrics.analysis.srm_diag import srm_by_strata
 
 
 def test_srm_by_strata_flags_country() -> None:

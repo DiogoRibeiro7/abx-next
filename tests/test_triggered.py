@@ -1,7 +1,7 @@
 import pandas as pd
 
-from abx_next import ABFrame
-from abx_next.analysis.triggered import diff_in_means, filter_exposed
+from experimetrics import ABFrame
+from experimetrics.analysis.triggered import diff_in_means, filter_exposed
 
 
 def test_filter_exposed_and_diff():

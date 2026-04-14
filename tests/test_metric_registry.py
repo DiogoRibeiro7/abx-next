@@ -6,9 +6,9 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from abx_next.core.errors import ValidationError
-from abx_next.core.validate import validate_ab_schema
-from abx_next.metrics.registry import _clear_registry, get_metric, list_metrics, register_metric
+from experimetrics.core.errors import ValidationError
+from experimetrics.core.validate import validate_ab_schema
+from experimetrics.metrics.registry import _clear_registry, get_metric, list_metrics, register_metric
 
 
 @pytest.fixture(autouse=True)

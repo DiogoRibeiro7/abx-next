@@ -6,8 +6,8 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from abx_next.core.errors import ValidationError
-from abx_next.geo import fit_scm, scm_summary
+from experimetrics.core.errors import ValidationError
+from experimetrics.geo import fit_scm, scm_summary
 
 
 def _build_panel(

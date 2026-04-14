@@ -1,4 +1,4 @@
-"""Custom exception hierarchy for abx-next."""
+"""Custom exception hierarchy for experimetrics."""
 
 from __future__ import annotations
 
