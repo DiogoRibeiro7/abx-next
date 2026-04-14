@@ -5,7 +5,6 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 import pytest
-
 from experimetrics.analysis import define_exposure, triggered_sensitivity
 from experimetrics.core.errors import ValidationError
 

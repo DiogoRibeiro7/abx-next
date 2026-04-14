@@ -1,4 +1,3 @@
-
 """Tests for uplift modeling helpers."""
 
 from __future__ import annotations
@@ -50,4 +49,3 @@ def test_invalid_treatment_column() -> None:
     df["group"] = "control"
     with pytest.raises(ValidationError):
         estimate_uplift(df, features=["x1"], outcome="outcome")
-

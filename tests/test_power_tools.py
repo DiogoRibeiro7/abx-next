@@ -3,13 +3,7 @@
 from __future__ import annotations
 
 import pytest
-
-from experimetrics.sim import (
-    power_mean_mc,
-    power_mean_welch,
-    power_prop_mc,
-    power_prop_normal,
-)
+from experimetrics.sim import power_mean_mc, power_mean_welch, power_prop_mc, power_prop_normal
 
 
 def test_power_mean_welch_matches_expectation() -> None:

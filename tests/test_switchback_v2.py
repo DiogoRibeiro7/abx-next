@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import pandas as pd
 import pytest
-
 from experimetrics.design.switchback import (
     assign_switchback,
     label_events_by_period,
@@ -28,19 +27,23 @@ def test_validate_period_rejects_invalid_alias() -> None:
 
 def test_label_events_by_period_basic_assignment() -> None:
     """Events should align to the most recent period_start and preserve order."""
-    events = pd.DataFrame({
-        "event_id": [101, 102, 103],
-        "ts": [
-            pd.Timestamp("2024-01-01 01:30:00"),
-            pd.Timestamp("2024-01-01 00:15:00"),
-            pd.Timestamp("2024-01-01 02:00:00"),
-        ],
-    })
+    events = pd.DataFrame(
+        {
+            "event_id": [101, 102, 103],
+            "ts": [
+                pd.Timestamp("2024-01-01 01:30:00"),
+                pd.Timestamp("2024-01-01 00:15:00"),
+                pd.Timestamp("2024-01-01 02:00:00"),
+            ],
+        }
+    )
 
-    period_assign = pd.DataFrame({
-        "period_start": pd.date_range("2024-01-01 00:00:00", periods=3, freq="H"),
-        "group": ["control", "treatment", "control"],
-    })
+    period_assign = pd.DataFrame(
+        {
+            "period_start": pd.date_range("2024-01-01 00:00:00", periods=3, freq="H"),
+            "group": ["control", "treatment", "control"],
+        }
+    )
 
     labelled = label_events_by_period(events, "ts", period_assign)
 
@@ -59,18 +62,22 @@ def test_label_events_by_period_basic_assignment() -> None:
 
 def test_label_events_by_period_timezone_aware() -> None:
     """Timezone-aware timestamps should be handled and validated."""
-    events = pd.DataFrame({
-        "ts": pd.to_datetime(
-            ["2024-05-01 00:15", "2024-05-01 00:45", "2024-05-01 01:10"],
-            utc=True,
-        ),
-        "metric": [1.0, 2.0, 3.0],
-    })
+    events = pd.DataFrame(
+        {
+            "ts": pd.to_datetime(
+                ["2024-05-01 00:15", "2024-05-01 00:45", "2024-05-01 01:10"],
+                utc=True,
+            ),
+            "metric": [1.0, 2.0, 3.0],
+        }
+    )
 
-    period_assign = pd.DataFrame({
-        "period_start": pd.date_range("2024-05-01 00:00", periods=3, freq="30T", tz="UTC"),
-        "group": ["control", "treatment", "control"],
-    })
+    period_assign = pd.DataFrame(
+        {
+            "period_start": pd.date_range("2024-05-01 00:00", periods=3, freq="30T", tz="UTC"),
+            "group": ["control", "treatment", "control"],
+        }
+    )
 
     labelled = label_events_by_period(events, "ts", period_assign)
     assert labelled["period_start"].dtype == period_assign["period_start"].dtype
@@ -79,13 +86,17 @@ def test_label_events_by_period_timezone_aware() -> None:
 
 def test_label_events_by_period_mismatched_timezone_raises() -> None:
     """Mixing naive and tz-aware timestamps should error."""
-    events = pd.DataFrame({
-        "ts": pd.to_datetime(["2024-06-01 00:00"]),
-    })
-    period_assign = pd.DataFrame({
-        "period_start": pd.date_range("2024-06-01 00:00", periods=1, freq="H", tz="UTC"),
-        "group": ["control"],
-    })
+    events = pd.DataFrame(
+        {
+            "ts": pd.to_datetime(["2024-06-01 00:00"]),
+        }
+    )
+    period_assign = pd.DataFrame(
+        {
+            "period_start": pd.date_range("2024-06-01 00:00", periods=1, freq="H", tz="UTC"),
+            "group": ["control"],
+        }
+    )
     with pytest.raises(TypeError):
         label_events_by_period(events, "ts", period_assign)
 
@@ -103,9 +114,11 @@ def test_label_events_handles_empty_inputs() -> None:
 
 def test_label_events_no_period_assignments() -> None:
     """When no period assignments exist, group labels should be missing."""
-    events = pd.DataFrame({
-        "ts": pd.to_datetime(["2024-07-01 00:10", "2024-07-01 00:20"]),
-    })
+    events = pd.DataFrame(
+        {
+            "ts": pd.to_datetime(["2024-07-01 00:10", "2024-07-01 00:20"]),
+        }
+    )
     period_assign = assign_switchback([], period="H")
     labelled = label_events_by_period(events, "ts", period_assign)
     assert labelled["group"].isna().all()

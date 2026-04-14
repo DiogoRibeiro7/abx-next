@@ -5,7 +5,6 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 import pytest
-
 from experimetrics.analysis.drift import drift_report, ks_drift, psi_drift
 
 
@@ -98,12 +97,14 @@ def test_drift_report_comprehensive():
     timestamps_pre = pd.date_range("2023-01-01", periods=n_pre, freq="1H")
     timestamps_in = pd.date_range("2023-01-22", periods=n_in, freq="1H")
 
-    df = pd.DataFrame({
-        "timestamp": list(timestamps_pre) + list(timestamps_in),
-        "no_drift": list(rng.normal(0, 1, n_pre)) + list(rng.normal(0, 1, n_in)),
-        "drift_feature": list(rng.normal(0, 1, n_pre)) + list(rng.normal(2, 1, n_in)),
-        "constant_feature": [5.0] * (n_pre + n_in),
-    })
+    df = pd.DataFrame(
+        {
+            "timestamp": list(timestamps_pre) + list(timestamps_in),
+            "no_drift": list(rng.normal(0, 1, n_pre)) + list(rng.normal(0, 1, n_in)),
+            "drift_feature": list(rng.normal(0, 1, n_pre)) + list(rng.normal(2, 1, n_in)),
+            "constant_feature": [5.0] * (n_pre + n_in),
+        }
+    )
 
     pre_end_ts = pd.Timestamp("2023-01-21")
     features = ["no_drift", "drift_feature", "constant_feature"]
@@ -112,8 +113,13 @@ def test_drift_report_comprehensive():
 
     assert len(result) == 3
     assert set(result.columns) == {
-        "feature", "ks_statistic", "ks_p_value", "ks_drift_detected",
-        "psi", "drift_severity", "message"
+        "feature",
+        "ks_statistic",
+        "ks_p_value",
+        "ks_drift_detected",
+        "psi",
+        "drift_severity",
+        "message",
     }
 
     # Check no_drift feature
@@ -133,10 +139,12 @@ def test_drift_report_comprehensive():
 
 def test_drift_report_insufficient_data():
     """Test drift report with insufficient data."""
-    df = pd.DataFrame({
-        "timestamp": ["2023-01-01", "2023-01-02"],
-        "feature": [1.0, 2.0],
-    })
+    df = pd.DataFrame(
+        {
+            "timestamp": ["2023-01-01", "2023-01-02"],
+            "feature": [1.0, 2.0],
+        }
+    )
 
     pre_end_ts = pd.Timestamp("2023-01-01 12:00:00")
 
@@ -158,10 +166,12 @@ def test_drift_report_with_missing_values():
     feature_data = list(rng.normal(0, 1, n_pre)) + list(rng.normal(0, 1, n_in))
     feature_data[10:15] = [np.nan] * 5  # Add some NaN values
 
-    df = pd.DataFrame({
-        "timestamp": list(timestamps_pre) + list(timestamps_in),
-        "feature_with_nan": feature_data,
-    })
+    df = pd.DataFrame(
+        {
+            "timestamp": list(timestamps_pre) + list(timestamps_in),
+            "feature_with_nan": feature_data,
+        }
+    )
 
     pre_end_ts = pd.Timestamp("2023-01-04")
 

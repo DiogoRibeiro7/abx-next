@@ -1,4 +1,3 @@
-
 """Tests for report summary rendering."""
 
 from __future__ import annotations
@@ -6,7 +5,7 @@ from __future__ import annotations
 import pathlib
 import sys
 
-sys.path.append('src')
+sys.path.append("src")
 
 from experimetrics.reporting.summary import render_ab_report
 
@@ -33,12 +32,12 @@ def test_render_ab_report_markdown():
     plots = {"Lift Chart": "![Lift](lift.png)"}
 
     output = render_ab_report(stats, guardrails, plots=plots)
-    expected = pathlib.Path('tests/fixtures/expected_report.md').read_text()
+    expected = pathlib.Path("tests/fixtures/expected_report.md").read_text()
     assert output == expected
 
 
 def test_render_ab_report_html():
-    markdown = render_ab_report({}, {}, format='markdown')
-    html = render_ab_report({}, {}, format='html')
-    assert '<h1>' in html
-    assert markdown.startswith('#')
+    markdown = render_ab_report({}, {}, format="markdown")
+    html = render_ab_report({}, {}, format="html")
+    assert "<h1>" in html
+    assert markdown.startswith("#")

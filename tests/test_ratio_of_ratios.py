@@ -4,12 +4,13 @@ from __future__ import annotations
 
 import numpy as np
 import pytest
-
 from experimetrics.analysis.ratio_of_ratios import ror_ci
 from experimetrics.core.errors import ValidationError
 
 
-def _sample_group(seed: int, size: int, ctr: float, impressions_mean: float) -> tuple[np.ndarray, np.ndarray]:
+def _sample_group(
+    seed: int, size: int, ctr: float, impressions_mean: float
+) -> tuple[np.ndarray, np.ndarray]:
     rng = np.random.default_rng(seed)
     den = rng.poisson(impressions_mean, size=size) + 1  # avoid zeros
     num = rng.binomial(den, ctr)

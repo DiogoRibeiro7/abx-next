@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import numpy as np
 import pytest
-
 from experimetrics.analysis import ratio_of_means_ci
 
 
@@ -53,4 +52,3 @@ def test_ratio_of_means_ci_normal_approximation() -> None:
     assert np.isclose(stats_welch["estimate"], stats_norm["estimate"])
     assert np.isclose(stats_welch["se"], stats_norm["se"], rtol=0.15)
     assert stats_norm["ci_low"] < stats_norm["estimate"] < stats_norm["ci_high"]
-

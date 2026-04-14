@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import numpy as np
 import pytest
-
 from experimetrics.analysis.sequential import bernoulli_ci_anytime, diff_ci_anytime_binomial
 
 

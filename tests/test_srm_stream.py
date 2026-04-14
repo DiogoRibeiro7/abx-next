@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import pytest
-
 from experimetrics.analysis.srm_stream import SrmWatch
 
 
@@ -128,9 +127,9 @@ def test_srm_watch_incremental_detection():
 
     updates = [
         (10, 10),  # Balanced start
-        (10, 8),   # Slight imbalance
-        (15, 5),   # More imbalance
-        (20, 2),   # Heavy imbalance - should trigger SRM
+        (10, 8),  # Slight imbalance
+        (15, 5),  # More imbalance
+        (20, 2),  # Heavy imbalance - should trigger SRM
     ]
 
     srm_detected_at = None
@@ -258,12 +257,12 @@ def test_srm_watch_simulation_early_detection():
 
     # Simulate gradual accumulation with severe imbalance
     simulation_data = [
-        (5, 5),    # Start balanced
-        (10, 8),   # Slight imbalance
+        (5, 5),  # Start balanced
+        (10, 8),  # Slight imbalance
         (15, 10),  # Growing imbalance
-        (20, 8),   # Significant imbalance
-        (25, 5),   # Severe imbalance - should trigger
-        (30, 5),   # Continue severe imbalance
+        (20, 8),  # Significant imbalance
+        (25, 5),  # Severe imbalance - should trigger
+        (30, 5),  # Continue severe imbalance
     ]
 
     results = []

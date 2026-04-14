@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import numpy as np
 import pytest
-
 from experimetrics.analysis import log_lift_ci, percent_change_ci
 from experimetrics.core.errors import ValidationError
 
@@ -87,4 +86,3 @@ def test_invalid_inputs_raise() -> None:
         percent_change_ci(mean_t=1.0, mean_c=1.0, se_diff=0.0, method="delta")
     with pytest.raises(ValidationError):
         percent_change_ci(mean_t=1.0, mean_c=1.0, se_diff=0.1, method="invalid")  # type: ignore[arg-type]
-

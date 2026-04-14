@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-
 from experimetrics.analysis.srm_diag import srm_by_strata
 
 
@@ -19,13 +18,15 @@ def test_srm_by_strata_flags_country() -> None:
     control_devices = rng.choice(["mobile", "desktop"], size=n_control)
     treatment_devices = rng.choice(["mobile", "desktop"], size=n_treatment)
 
-    df = pd.DataFrame({
-        "group": np.concatenate(
-            [np.repeat("control", n_control), np.repeat("treatment", n_treatment)]
-        ),
-        "country": np.concatenate([control_countries, treatment_countries]),
-        "device": np.concatenate([control_devices, treatment_devices]),
-    })
+    df = pd.DataFrame(
+        {
+            "group": np.concatenate(
+                [np.repeat("control", n_control), np.repeat("treatment", n_treatment)]
+            ),
+            "country": np.concatenate([control_countries, treatment_countries]),
+            "device": np.concatenate([control_devices, treatment_devices]),
+        }
+    )
 
     report = srm_by_strata(df, features=["country", "device"])
     assert not report.empty

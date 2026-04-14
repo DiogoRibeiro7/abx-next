@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import numpy as np
 import pytest
-
 from experimetrics.analysis.bayes_bernoulli import (
     lift_posterior_samples,
     posterior,

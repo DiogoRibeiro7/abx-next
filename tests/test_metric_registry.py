@@ -1,14 +1,17 @@
-
 """Tests for metric registry and schema validation."""
 
 from __future__ import annotations
 
 import pandas as pd
 import pytest
-
 from experimetrics.core.errors import ValidationError
 from experimetrics.core.validate import validate_ab_schema
-from experimetrics.metrics.registry import _clear_registry, get_metric, list_metrics, register_metric
+from experimetrics.metrics.registry import (
+    _clear_registry,
+    get_metric,
+    list_metrics,
+    register_metric,
+)
 
 
 @pytest.fixture(autouse=True)
@@ -57,6 +60,10 @@ def test_validate_ab_schema() -> None:
     )
     validate_ab_schema(df)
 
+    df_bad = df.copy()
+    df_bad["group"] = ["control", "invalid"]
+    with pytest.raises(ValidationError):
+        validate_ab_schema(df_bad)
     df_bad = df.copy()
     df_bad["group"] = ["control", "invalid"]
     with pytest.raises(ValidationError):

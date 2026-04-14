@@ -5,10 +5,10 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 import pytest
+from experimetrics.providers import SklearnCovariateProvider
 from sklearn.linear_model import LinearRegression
 
 from experimetrics import ABFrame, cuped_adjust
-from experimetrics.providers import SklearnCovariateProvider
 
 
 def test_sklearn_covariate_provider_reduces_variance() -> None:
@@ -21,26 +21,24 @@ def test_sklearn_covariate_provider_reduces_variance() -> None:
     treatment_mask = rng.random(n) < 0.5
     noise = rng.normal(loc=0.0, scale=0.1, size=n)
 
-    metric = (
-        1.0
-        + 0.8 * baseline
-        + 0.5 * context
-        + 0.3 * treatment_mask.astype(float)
-        + noise
+    metric = 1.0 + 0.8 * baseline + 0.5 * context + 0.3 * treatment_mask.astype(float) + noise
+
+    df = pd.DataFrame(
+        {
+            "user_id": user_id,
+            "group": np.where(treatment_mask, "treatment", "control"),
+            "metric": metric,
+            "exposed": np.ones(n, dtype=bool),
+        }
     )
 
-    df = pd.DataFrame({
-        "user_id": user_id,
-        "group": np.where(treatment_mask, "treatment", "control"),
-        "metric": metric,
-        "exposed": np.ones(n, dtype=bool),
-    })
-
-    feature_df = pd.DataFrame({
-        "user_id": user_id,
-        "baseline": baseline,
-        "context": context,
-    })
+    feature_df = pd.DataFrame(
+        {
+            "user_id": user_id,
+            "baseline": baseline,
+            "context": context,
+        }
+    )
 
     model = LinearRegression()
     model.fit(feature_df[["baseline", "context"]], metric)
@@ -66,10 +64,12 @@ def test_sklearn_covariate_provider_reduces_variance() -> None:
 
 def test_sklearn_covariate_provider_missing_user_ids() -> None:
     """Ensure missing user identifiers produce a clear error."""
-    feature_df = pd.DataFrame({
-        "user_id": [1, 2, 3],
-        "x": [0.1, 0.2, 0.3],
-    })
+    feature_df = pd.DataFrame(
+        {
+            "user_id": [1, 2, 3],
+            "x": [0.1, 0.2, 0.3],
+        }
+    )
     model = LinearRegression()
     model.fit(feature_df[["x"]], [0.1, 0.2, 0.3])
 
@@ -82,4 +82,3 @@ def test_sklearn_covariate_provider_missing_user_ids() -> None:
 
     with pytest.raises(ValueError, match="Missing features"):
         provider.get_covariate(pd.Series([4]))
-

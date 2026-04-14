@@ -5,7 +5,6 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 import pytest
-
 from experimetrics.analysis import adjust_pvalues, familywise_report
 from experimetrics.core.errors import ValidationError
 
@@ -49,6 +48,3 @@ def test_adjust_pvalues_validation() -> None:
         adjust_pvalues(pd.Series([], dtype=float))
     with pytest.raises(ValidationError):
         adjust_pvalues(pd.Series([0.1, 0.2]), method="unknown")
-
-
-

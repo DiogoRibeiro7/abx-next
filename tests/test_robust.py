@@ -4,10 +4,9 @@ from __future__ import annotations
 
 import numpy as np
 import pytest
-from scipy.stats import lognorm, norm
-
 from experimetrics.analysis.robust import percentile_ci, winsorized_mean_ci
 from experimetrics.core.errors import ValidationError
+from scipy.stats import lognorm, norm
 
 
 def _lognormal_winsorized_mean(mu: float, sigma: float, trim: float) -> float:
