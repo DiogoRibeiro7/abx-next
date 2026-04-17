@@ -6,12 +6,10 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from abx_next.analysis.bootstrap import (
-    bootstrap_diff_ci,
-    bootstrap_mean_ci,
-    bootstrap_ratio_ci,
-)
-from abx_next.core.errors import ValidationError
+from experimetrics.analysis.bootstrap import (bootstrap_diff_ci,
+                                              bootstrap_mean_ci,
+                                              bootstrap_ratio_ci)
+from experimetrics.core.errors import ValidationError
 
 
 def test_bootstrap_mean_ci_contains_true_mean() -> None:
