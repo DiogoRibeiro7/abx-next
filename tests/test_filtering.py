@@ -1,7 +1,9 @@
 import pandas as pd
 import pytest
+
 from experimetrics.analysis.filtering import filter_by_significance
 from experimetrics.core.errors import ValidationError
+
 
 def test_filter_by_significance_basic():
     df = pd.DataFrame({
@@ -27,5 +29,7 @@ def test_filter_by_significance_invalid_col():
 
 def test_filter_by_significance_invalid_alpha():
     df = pd.DataFrame({"metric": ["m1"], "pvalue": [0.1]})
+    with pytest.raises(ValidationError):
+        filter_by_significance(df, alpha=1.5)
     with pytest.raises(ValidationError):
         filter_by_significance(df, alpha=1.5)
