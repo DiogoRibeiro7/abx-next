@@ -13,7 +13,7 @@ include = ["src/experimetrics/py.typed"]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.13"
-numpy = "^2.3.5"
+numpy = "^2.4.0"
 pandas = "^2.2.0"
 scipy = "^1.16.3"
 typing-extensions = "^4.12.0"
