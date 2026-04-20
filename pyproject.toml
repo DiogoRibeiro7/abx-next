@@ -29,7 +29,7 @@ viz = ["matplotlib"]
 [tool.poetry.group.dev.dependencies]
 pytest = "^9.0.2"
 pytest-cov = "^7.0.0"
-mypy = "^1.19.0"
+mypy = "^1.19.1"
 ruff = "^0.14.9"
 pandas-stubs = "^2.2.0"
 scipy-stubs = "^1.16.3"
