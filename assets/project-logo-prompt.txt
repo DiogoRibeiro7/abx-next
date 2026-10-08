@@ -1,0 +1,7 @@
+Tool: built-in image generation
+
+Use case: logo-brand.
+Asset type: square project logo for abx-next.
+Project purpose: Modern A/B experimentation utilities: CUPED/CUPAC hooks, triggered analysis, SRM, switchback helpers, and power sims.
+Design direction: A bold bespoke typographic logo using exactly the lowercase text 'abx'. Heavy rounded black letterforms on white; the x splits into two fluorescent-pink diagonal experimental paths, forming a clever shared crossing. Tight, beautifully balanced letter spacing, flat graphic design, a small pink square accent aligned with the baseline. The three-letter wordmark is the subject. No other text, no 3D.
+Composition: one finished square image, visually distinctive and readable at 160 pixels, with enough margin for README display. Produce the actual artwork, not a mockup sheet or brand presentation. No watermark. Do not use a navy-and-gold metallic badge aesthetic.

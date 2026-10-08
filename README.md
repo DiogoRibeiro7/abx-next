@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/project-avatar.png" alt="abx-next project logo" width="160" height="160">
+  <img src="assets/project-logo.png" alt="abx-next project logo" width="160" height="160">
 </p>
 
 # experimetrics
