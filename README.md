@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/project-avatar.png" alt="abx-next project logo" width="160" height="160">
+</p>
+
 # experimetrics
 
 Modern A/B experimentation utilities: CUPED/CUPAC hooks, triggered analysis, SRM, switchback helpers, and power simulations.
